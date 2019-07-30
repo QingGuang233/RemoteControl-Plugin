@@ -1,0 +1,19 @@
+name: RemoteControl
+main: com.qing_guang.RemoteControl.plugin.main.Main
+version: 1.0
+author: qing_guang
+depend: [RemoteControlLib]
+
+commands: 
+  rc: 
+    description: RemoteControl's main command
+
+permissions:
+  rc.use:
+    default: op
+  rc.reload:
+    default: op
+  rc.acc_ctrl:
+    default: op
+  rc.disconn:
+    default: op
