@@ -41,7 +41,7 @@ import com.qing_guang.RemoteControl.util.channel.ConnectChannel;
 import com.qing_guang.RemoteControl.util.channel.WriteChannel;
 
 /**
- * Ä¬ÈÏµÄ¿Í»§¶ËÊµÏÖÀà
+ * é»˜è®¤çš„å®¢æˆ·ç«¯å®ç°ç±»
  * @author Qing_Guang
  *
  */
@@ -56,7 +56,7 @@ public class RemoteControlClient extends Thread implements Cloneable{
 	private RemoteControlServer server;
 	
 	/**
-	 * ¿Í»§¶ËÔËĞĞµÄÖ÷·½·¨
+	 * å®¢æˆ·ç«¯è¿è¡Œçš„ä¸»æ–¹æ³•
 	 * @see java.lang.Runnable#run()
 	 */
 	public void run() {
@@ -131,12 +131,12 @@ public class RemoteControlClient extends Thread implements Cloneable{
 	}
 	
 	/**
-	 * ¶ÁÈ¡Ò»¸öÊı¾İ°ü(×èÈû)
-	 * @param decrypt ÊÇ·ñÊ¹ÓÃ½âÃÜËã·¨½âÃÜ
-	 * @param rsa_or_aes ½âÃÜËã·¨,ÎªtrueÔòÊ¹ÓÃrsa½âÃÜ,·ñÔòÊ¹ÓÃaes½âÃÜ
-	 * @param brk µ±´ËCallable.call()·µ»ØfalseÊ±,½«»áÍ£Ö¹×èÈû²¢·µ»Ønull
-	 * @return ¶ÁÈ¡µ½µÄÊı¾İ°ü,ÈôÃ»¶ÁÈ¡µ½»òbrk.call()·µ»ØfalseÊ±·µ»Ønull
-	 * @throws Exception µ±brk.call()³öÏÖÒì³£»òThread.sleep()³öÏÖInterruptedExceptionÊ±Å×³ö
+	 * è¯»å–ä¸€ä¸ªæ•°æ®åŒ…(é˜»å¡)
+	 * @param decrypt æ˜¯å¦ä½¿ç”¨è§£å¯†ç®—æ³•è§£å¯†
+	 * @param rsa_or_aes è§£å¯†ç®—æ³•,ä¸ºtrueåˆ™ä½¿ç”¨rsaè§£å¯†,å¦åˆ™ä½¿ç”¨aesè§£å¯†
+	 * @param brk å½“æ­¤Callable.call()è¿”å›falseæ—¶,å°†ä¼šåœæ­¢é˜»å¡å¹¶è¿”å›null
+	 * @return è¯»å–åˆ°çš„æ•°æ®åŒ…,è‹¥æ²¡è¯»å–åˆ°æˆ–brk.call()è¿”å›falseæ—¶è¿”å›null
+	 * @throws Exception å½“brk.call()å‡ºç°å¼‚å¸¸æˆ–Thread.sleep()å‡ºç°InterruptedExceptionæ—¶æŠ›å‡º
 	 * @see com.qing_guang.RemoteControl.util.channel.ReadChannel#getPacket()
 	 * @see com.qing_guang.RemoteControl.util.channel.ReadChannel#getPacket(boolean)
 	 * @see java.lang.InterruptedException
@@ -158,13 +158,13 @@ public class RemoteControlClient extends Thread implements Cloneable{
 	}
 	
 	/**
-	 * ¶ÁÈ¡Ò»¸öÊı¾İ°ü(×èÈû,ÓĞ×î´óµÈ´ıÊ±¼ä)
-	 * @param decrypt ÊÇ·ñÊ¹ÓÃ½âÃÜËã·¨½âÃÜ
-	 * @param rsa_or_aes ½âÃÜËã·¨,ÎªtrueÔòÊ¹ÓÃrsa½âÃÜ,·ñÔòÊ¹ÓÃaes½âÃÜ
-	 * @param timeout ×î´óµÈ´ıÊ±³¤
-	 * @return ¶ÁÈ¡µ½µÄÊı¾İ°ü,ÈôÃ»¶ÁÈ¡µ½»òbrk.call()·µ»ØfalseÊ±·µ»Ønull
-	 * @throws TimeoutException µ±µÈ´ıÊ±³¤³¬¹ıtimeoutÊ±Å×³ö
-	 * @throws InterruptedException Áí¼ûjava.lang.Thread.join(long)
+	 * è¯»å–ä¸€ä¸ªæ•°æ®åŒ…(é˜»å¡,æœ‰æœ€å¤§ç­‰å¾…æ—¶é—´)
+	 * @param decrypt æ˜¯å¦ä½¿ç”¨è§£å¯†ç®—æ³•è§£å¯†
+	 * @param rsa_or_aes è§£å¯†ç®—æ³•,ä¸ºtrueåˆ™ä½¿ç”¨rsaè§£å¯†,å¦åˆ™ä½¿ç”¨aesè§£å¯†
+	 * @param timeout æœ€å¤§ç­‰å¾…æ—¶é•¿
+	 * @return è¯»å–åˆ°çš„æ•°æ®åŒ…,è‹¥æ²¡è¯»å–åˆ°æˆ–brk.call()è¿”å›falseæ—¶è¿”å›null
+	 * @throws TimeoutException å½“ç­‰å¾…æ—¶é•¿è¶…è¿‡timeoutæ—¶æŠ›å‡º
+	 * @throws InterruptedException å¦è§java.lang.Thread.join(long)
 	 * @see #readPacket(boolean,boolean,Callable)
 	 * @see com.qing_guang.RemoteControl.util.channel.ReadChannel#getPacket()
 	 * @see com.qing_guang.RemoteControl.util.channel.ReadChannel#getPacket(boolean)
@@ -197,8 +197,8 @@ public class RemoteControlClient extends Thread implements Cloneable{
 	}
 	
 	/**
-	 * Ìí¼ÓÒ»¸ö´ı·¢ËÍ(²»¼ÓÃÜ)µÄÊı¾İ°üµ½Êä³ö»º³åÇøÀï
-	 * @param pkt ´ı·¢ËÍµÄÊı¾İ°ü
+	 * æ·»åŠ ä¸€ä¸ªå¾…å‘é€(ä¸åŠ å¯†)çš„æ•°æ®åŒ…åˆ°è¾“å‡ºç¼“å†²åŒºé‡Œ
+	 * @param pkt å¾…å‘é€çš„æ•°æ®åŒ…
 	 * @see com.qing_guang.RemoteControl.util.channel.WriteChannel#addPacketWillSend(Packet)
 	 */
 	public void addPacketWillSend(Packet<?> pkt) {
@@ -230,9 +230,9 @@ public class RemoteControlClient extends Thread implements Cloneable{
 	}
 	
 	/**
-	 * Ìí¼ÓÒ»¸ö´ı·¢ËÍ(¼ÓÃÜ)µÄÊı¾İ°üµ½Êä³ö»º³åÇøÀï
-	 * @param pkt ´ı·¢ËÍµÄÊı¾İ°ü
-	 * @param rsa_or_aes ÈôÎªtrueÔòÊ¹ÓÃrsaËã·¨¼ÓÃÜ,·ñÔòÊ¹ÓÃaesËã·¨¼ÓÃÜ
+	 * æ·»åŠ ä¸€ä¸ªå¾…å‘é€(åŠ å¯†)çš„æ•°æ®åŒ…åˆ°è¾“å‡ºç¼“å†²åŒºé‡Œ
+	 * @param pkt å¾…å‘é€çš„æ•°æ®åŒ…
+	 * @param rsa_or_aes è‹¥ä¸ºtrueåˆ™ä½¿ç”¨rsaç®—æ³•åŠ å¯†,å¦åˆ™ä½¿ç”¨aesç®—æ³•åŠ å¯†
 	 * @see com.qing_guang.RemoteControl.util.channel.WriteChannel#addPacketWillSend(Packet,boolean)
 	 */
 	public void addPacketWillSend(Packet<?> pkt,boolean rsa_or_aes) {
@@ -265,36 +265,36 @@ public class RemoteControlClient extends Thread implements Cloneable{
 	}
 	
 	/**
-	 * ·µ»Øµ±Ç°Êä³öÍ¨µÀÊÇ·ñÍê³ÉÁËËùÓĞ·¢ËÍÈÎÎñ
+	 * è¿”å›å½“å‰è¾“å‡ºé€šé“æ˜¯å¦å®Œæˆäº†æ‰€æœ‰å‘é€ä»»åŠ¡
 	 */
 	public boolean noSendTask() {
 		WriteChannel wchannel = channel.getWriteChannel();
-		return !wchannel.isWriting() && wchannel.getBuffer().insertWhere() == wchannel.getBuffer().size() - 1;
+		return !wchannel.isWriting() && wchannel.getBuffer().insertWhere() == wchannel.getBuffer().size();
 	}
 	
 	/**
-	 * ´Ë¿Í»§¶ËµÄÓÃ»§Ãû
+	 * æ­¤å®¢æˆ·ç«¯çš„ç”¨æˆ·å
 	 */
 	public String getUname() {
 		return uname;
 	}
 	
 	/**
-	 * ´Ë¿Í»§¶ËÕıÔÚÊ¹ÓÃµÄ°æ±¾
+	 * æ­¤å®¢æˆ·ç«¯æ­£åœ¨ä½¿ç”¨çš„ç‰ˆæœ¬
 	 */
 	public String getVersion() {
 		return version;
 	}
 	
 	/**
-	 * ´´½¨´Ë¿Í»§¶ËµÄ·şÎñÆ÷
+	 * åˆ›å»ºæ­¤å®¢æˆ·ç«¯çš„æœåŠ¡å™¨
 	 */
 	public RemoteControlServer getServer() {
 		return server;
 	}
 	
 	/**
-	 * ÊÇ·ñ»¹ÔÚÔËĞĞ
+	 * æ˜¯å¦è¿˜åœ¨è¿è¡Œ
 	 */
 	public boolean isRunning() {
 		return isRunning;
@@ -323,7 +323,7 @@ public class RemoteControlClient extends Thread implements Cloneable{
 		return new RemoteControlClient();
 	}
 	
-	//×¢²á
+	//æ³¨å†Œ
 	private void register(String uname) {
 		
 		this.uname = uname;
@@ -359,7 +359,7 @@ public class RemoteControlClient extends Thread implements Cloneable{
 		
 	}
 	
-	//ÔËĞĞ
+	//è¿è¡Œ
 	private void action() {
 		
 		Packet<?> pkt = null;
@@ -389,7 +389,7 @@ public class RemoteControlClient extends Thread implements Cloneable{
 		
 	}
 
-	//ÅĞ¶Ï´«ÈëµÄ¶ÔÏóÊÇ·ñÎªÖ¸¶¨ÀàµÄÊµÏÖÀà,Èç¹ûÊÇ·µ»Ø´Ë¶ÔÏó(×ªĞÍ),Èç¹û²»ÊÇ·µ»Ønull»òÕßÅ×³öUnsupportedClassTypeExceptionÒì³£
+	//åˆ¤æ–­ä¼ å…¥çš„å¯¹è±¡æ˜¯å¦ä¸ºæŒ‡å®šç±»çš„å®ç°ç±»,å¦‚æœæ˜¯è¿”å›æ­¤å¯¹è±¡(è½¬å‹),å¦‚æœä¸æ˜¯è¿”å›nullæˆ–è€…æŠ›å‡ºUnsupportedClassTypeExceptionå¼‚å¸¸
 	@SuppressWarnings("unchecked")
 	private static <T> T inst(Object obj,Class<T> clazz,boolean throwexc) throws UnsupportedClassTypeException{
 		if(clazz.isInstance(obj)) {
