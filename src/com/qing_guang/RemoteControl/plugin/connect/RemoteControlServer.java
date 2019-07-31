@@ -17,7 +17,7 @@ import com.qing_guang.RemoteControl.plugin.event.ClientDisconnectEvent;
 import com.qing_guang.RemoteControl.util.ExceptionHandler;
 
 /**
- * Ä¬ÈÏµÄ·şÎñÆ÷ÊµÏÖÀà
+ * é»˜è®¤çš„æœåŠ¡å™¨å®ç°ç±»
  * @author Qing_Guang
  *
  */
@@ -36,15 +36,15 @@ public class RemoteControlServer extends Thread{
 	Map<String,RemoteControlClient> logged;
 	
 	/**
-	 * ´´½¨Ò»¸öÄ¬ÈÏµÄ·şÎñÆ÷
-	 * @param port Ê¹ÓÃµÄ¶Ë¿Ú
-	 * @param max_client ×î´óÔÊĞíµÄ¿Í»§¶ËÊıÁ¿
-	 * @param client_temp ¿Í»§¶ËµÄÄ£°å
-	 * @param server_cant_init ·şÎñÆ÷ÎŞ·¨¿ªÆôµÄÒì³£´¦ÀíÆ÷
-	 * @param server_cant_stop ·şÎñÆ÷ÎŞ·¨¹Ø±ÕµÄÒì³£´¦ÀíÆ÷
-	 * @param client_write_exc ¿Í»§¶ËÊä³öÊı¾İÒì³£´¦ÀíÆ÷(Ä£°å)
-	 * @param client_read_exc ¿Í»§¶Ë½ÓÊÕÊı¾İÒì³£´¦ÀíÆ÷(Ä£°å)
-	 * @param client_close_exc ÎŞ·¨¹Ø±Õ¿Í»§¶ËµÄÒì³£´¦ÀíÆ÷(Ä£°å)
+	 * åˆ›å»ºä¸€ä¸ªé»˜è®¤çš„æœåŠ¡å™¨
+	 * @param port ä½¿ç”¨çš„ç«¯å£
+	 * @param max_client æœ€å¤§å…è®¸çš„å®¢æˆ·ç«¯æ•°é‡
+	 * @param client_temp å®¢æˆ·ç«¯çš„æ¨¡æ¿
+	 * @param server_cant_init æœåŠ¡å™¨æ— æ³•å¼€å¯çš„å¼‚å¸¸å¤„ç†å™¨
+	 * @param server_cant_stop æœåŠ¡å™¨æ— æ³•å…³é—­çš„å¼‚å¸¸å¤„ç†å™¨
+	 * @param client_write_exc å®¢æˆ·ç«¯è¾“å‡ºæ•°æ®å¼‚å¸¸å¤„ç†å™¨(æ¨¡æ¿)
+	 * @param client_read_exc å®¢æˆ·ç«¯æ¥æ”¶æ•°æ®å¼‚å¸¸å¤„ç†å™¨(æ¨¡æ¿)
+	 * @param client_close_exc æ— æ³•å…³é—­å®¢æˆ·ç«¯çš„å¼‚å¸¸å¤„ç†å™¨(æ¨¡æ¿)
 	 */
 	public RemoteControlServer(int port,int max_client,RemoteControlClient client_temp
 			,ExceptionHandler<IOException> server_cant_init,ExceptionHandler<IOException> server_cant_stop
@@ -62,7 +62,7 @@ public class RemoteControlServer extends Thread{
 	}
 	
 	/**
-	 * ¿ªÊ¼ÔËĞĞ·şÎñÆ÷
+	 * å¼€å§‹è¿è¡ŒæœåŠ¡å™¨
 	 */
 	public void run(){
 		
@@ -87,8 +87,6 @@ public class RemoteControlServer extends Thread{
 				RemoteControlClient client = client_temp.clone();
 				client.init(c, client_write_exc.clone(), client_read_exc.clone(), this);
 				client.start();
-				
-				System.out.println(123);
 			
 			}catch (IOException e){
 			}
@@ -98,14 +96,14 @@ public class RemoteControlServer extends Thread{
 	}
 	
 	/**
-	 * ·şÎñÆ÷ÊÇ·ñÔËĞĞ
+	 * æœåŠ¡å™¨æ˜¯å¦è¿è¡Œ
 	 */
 	public boolean isRunning() {
 		return isRunning;
 	}
 	
 	/**
-	 * ¹Ø±Õ·şÎñÆ÷
+	 * å…³é—­æœåŠ¡å™¨
 	 */
 	public void disable() {
 		
@@ -130,10 +128,10 @@ public class RemoteControlServer extends Thread{
 	}
 	
 	/**
-	 * ¶ÏÏßÒ»¸ö¿Í»§¶Ë
-	 * @param uname ¿Í»§¶ËµÄÓÃ»§Ãû
-	 * @param cause ¶ÏÏßÔ­Òò
-	 * @throws IllegalArgumentException µ±´ËÓÃ»§ÃûÃ»ÓĞ±»µÇÂ½Ê±Å×³ö
+	 * æ–­çº¿ä¸€ä¸ªå®¢æˆ·ç«¯
+	 * @param uname å®¢æˆ·ç«¯çš„ç”¨æˆ·å
+	 * @param cause æ–­çº¿åŸå› 
+	 * @throws IllegalArgumentException å½“æ­¤ç”¨æˆ·åæ²¡æœ‰è¢«ç™»é™†æ—¶æŠ›å‡º
 	 * @see #disconn(RemoteControlClient,DisconnectionCause)
 	 */
 	public void disconn(String uname,DisconnectionCause cause) throws IllegalArgumentException{
@@ -144,9 +142,9 @@ public class RemoteControlServer extends Thread{
 	}
 	
 	/**
-	 * ¶ÏÏßÒ»¸ö¿Í»§¶Ë
-	 * @param client ¿Í»§¶Ë
-	 * @param cause ¶ÏÏßÔ­Òò
+	 * æ–­çº¿ä¸€ä¸ªå®¢æˆ·ç«¯
+	 * @param client å®¢æˆ·ç«¯
+	 * @param cause æ–­çº¿åŸå› 
 	 */
 	public void disconn(RemoteControlClient client,DisconnectionCause cause) {
 		
@@ -157,6 +155,7 @@ public class RemoteControlServer extends Thread{
 			if(cause == DisconnectionCause.MANUAL) {
 				try {
 					client.addPacketWillSend(new ManualDisconnectedPacket(),false);
+					Thread.sleep(100);
 					waitForSendOver(client);
 					client.disconn();
 					success = true;
@@ -165,6 +164,8 @@ public class RemoteControlServer extends Thread{
 					client_close_exc.setClient(client);
 					client_close_exc.handle(exc);
 					success = false;
+				} catch (InterruptedException e) {
+					e.printStackTrace();
 				}
 			}else if(cause == DisconnectionCause.CLIENT_EXIT){
 				try {
@@ -179,11 +180,14 @@ public class RemoteControlServer extends Thread{
 			}else if(cause == DisconnectionCause.SERVER_CLOSE){
 				try {
 					client.addPacketWillSend(new ServerClosePacket(),false);
+					Thread.sleep(100);
 					waitForSendOver(client);
 					client.disconn();
 					success = true;
 				}catch(IOException exc) {
 					success = false;
+				} catch (InterruptedException e) {
+					e.printStackTrace();
 				}
 			}else if(cause == DisconnectionCause.INPUT_ERROR || cause == DisconnectionCause.OUTPUT_ERROR) {
 				try {
@@ -206,58 +210,58 @@ public class RemoteControlServer extends Thread{
 	}
 	
 	/**
-	 * ¿Í»§¶ËÊÇ·ñÔÚÏß
-	 * @param uname ¿Í»§¶ËµÄÓÃ»§Ãû
+	 * å®¢æˆ·ç«¯æ˜¯å¦åœ¨çº¿
+	 * @param uname å®¢æˆ·ç«¯çš„ç”¨æˆ·å
 	 */
 	public boolean isOnline(String uname) {
 		return logged.containsKey(uname);
 	}
 	
 	/**
-	 * »ñÈ¡ËùÓĞµÄ¿Í»§¶Ë
+	 * è·å–æ‰€æœ‰çš„å®¢æˆ·ç«¯
 	 */
 	public Collection<RemoteControlClient> getClients(){
 		return logged.values();
 	}
 	
 	/**
-	 * »ñÈ¡¿Í»§¶Ë
-	 * @param uname ¿Í»§¶ËµÄÓÃ»§Ãû
+	 * è·å–å®¢æˆ·ç«¯
+	 * @param uname å®¢æˆ·ç«¯çš„ç”¨æˆ·å
 	 */
 	public RemoteControlClient getClient(String uname) {
 		return logged.get(uname);
 	}
 	
 	/**
-	 * ÉèÖÃ¿Í»§¶ËµÄÄ£°å
+	 * è®¾ç½®å®¢æˆ·ç«¯çš„æ¨¡æ¿
 	 */
 	public void setClientTemp(RemoteControlClient client_temp) {
 		this.client_temp = client_temp;
 	}
 	
 	/**
-	 * ÉèÖÃ·şÎñÆ÷ÎŞ·¨¹Ø±ÕµÄÒì³£´¦ÀíÆ÷
+	 * è®¾ç½®æœåŠ¡å™¨æ— æ³•å…³é—­çš„å¼‚å¸¸å¤„ç†å™¨
 	 */
 	public void setServerCantStopExcHandler(ExceptionHandler<IOException> server_cant_stop) {
 		this.server_cant_stop = server_cant_stop;
 	}
 	
 	/**
-	 * ÉèÖÃ¿Í»§¶ËÊä³öÊı¾İÒì³£´¦ÀíÆ÷(Ä£°å)
+	 * è®¾ç½®å®¢æˆ·ç«¯è¾“å‡ºæ•°æ®å¼‚å¸¸å¤„ç†å™¨(æ¨¡æ¿)
 	 */
 	public void setClientWriteExcHandlerTemp(AbstractClientExceptionHandler client_write_exc) {
 		this.client_write_exc = client_write_exc;
 	}
 	
 	/**
-	 * ¿Í»§¶Ë½ÓÊÕÊı¾İÒì³£´¦ÀíÆ÷(Ä£°å)
+	 * å®¢æˆ·ç«¯æ¥æ”¶æ•°æ®å¼‚å¸¸å¤„ç†å™¨(æ¨¡æ¿)
 	 */
 	public void setClientReadExcHandlerTemp(AbstractClientExceptionHandler client_read_exc) {
 		this.client_read_exc = client_read_exc;
 	}
 	
 	/**
-	 * ÎŞ·¨¹Ø±Õ¿Í»§¶ËµÄÒì³£´¦ÀíÆ÷(Ä£°å)
+	 * æ— æ³•å…³é—­å®¢æˆ·ç«¯çš„å¼‚å¸¸å¤„ç†å™¨(æ¨¡æ¿)
 	 */
 	public void setClientCloseExcHandlerTemp(AbstractClientExceptionHandler client_close_exc) {
 		this.client_close_exc = client_close_exc;
@@ -274,34 +278,34 @@ public class RemoteControlServer extends Thread{
 	}
 	
 	/**
-	 * ¶ÏÏßÔ­Òò
+	 * æ–­çº¿åŸå› 
 	 * @author Qing_Guang
 	 *
 	 */
 	public enum DisconnectionCause{
 		
 		/**
-		 * ÊÖ¶¯
+		 * æ‰‹åŠ¨
 		 */
 		MANUAL,
 		
 		/**
-		 * ¿Í»§¶ËÍË³ö
+		 * å®¢æˆ·ç«¯é€€å‡º
 		 */
 		CLIENT_EXIT,
 		
 		/**
-		 * ·şÎñÆ÷¹Ø±Õ
+		 * æœåŠ¡å™¨å…³é—­
 		 */
 		SERVER_CLOSE,
 		
 		/**
-		 * ÊäÈëÒì³£
+		 * è¾“å…¥å¼‚å¸¸
 		 */
 		INPUT_ERROR,
 		
 		/**
-		 * Êä³öÒì³£
+		 * è¾“å‡ºå¼‚å¸¸
 		 */
 		OUTPUT_ERROR
 	}
